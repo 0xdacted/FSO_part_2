@@ -11,12 +11,17 @@ const Person = (props) => {
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { id: 1, name: 'Arto Hellas' }
   ]) 
   const [newName, setNewName] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
+    const nameAlreadyExists = persons.some(person => person.name === newName)
+    if (nameAlreadyExists) {
+      alert(`${newName} is already added to the phonebook`)
+      return
+    }
     const nameObject = {
       id: persons.length + 1,
       name: newName
