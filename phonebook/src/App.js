@@ -1,46 +1,7 @@
 import { useState } from 'react'
-
-
-const Person = (props) => {
-  return (
-    <div>
-    {props.name} {props.number}
-    </div>
-  )
-  }
-
-const SearchField = ({value, onChange}) => {
-  return (
-    <div>
-      search: <input value={value} onChange={onChange}/>
-    </div>
-  )
-}
-
-const AddContact = ({newName, newNumber, handleNameChange, handleNumberChange, addContact}) => {
-  return (
-    <form onSubmit={addContact}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange}/> <br></br>
-          number: <input value={newNumber} onChange={handleNumberChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-  )
-}
-
-const Contacts = ({ filteredPersons }) => {
-  return (
-    <div>
-      <h2>Numbers</h2>
-        {filteredPersons.map(person => 
-          <Person key={person.id} name={person.name} number={person.number} />
-        )}
-    </div>
-  )
-}
+import Contacts from './Components/Contacts'
+import AddContact from './Components/AddContact'
+import SearchField from './Components/SearchField'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -92,7 +53,6 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <SearchField value={searchTerm} onChange={handleSearch}/>
-      <h2>Add contact</h2>
       <AddContact newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} addContact={addContact}/>
       <Contacts filteredPersons={filteredPersons}/>
     </div>
