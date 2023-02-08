@@ -35,7 +35,7 @@ const App = () => {
     setPersons(persons.concat(nameObject))
     
     contactService
-    .create(personObject)
+    .create(nameObject)
     .then(returnedPerson => {
       setPersons(persons.concat(returnedPerson))})
 
