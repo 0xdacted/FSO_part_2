@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Contacts from './Components/Contacts'
+import ContactService from './services/contacts'
 import AddContact from './Components/AddContact'
 import SearchField from './Components/SearchField'
 
@@ -37,7 +38,7 @@ const App = () => {
     axios.post('http://localhost:3001/persons', nameObject)
     .then(response => {
     console.log(response.data) })
-    
+
     setNewName('')
     setNewNumber('')
   }
