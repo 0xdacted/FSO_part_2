@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Contacts from './Components/Contacts'
-import ContactService from './services/contacts'
+import contactService from './services/contacts'
 import AddContact from './Components/AddContact'
 import SearchField from './Components/SearchField'
+
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -14,12 +14,11 @@ const App = () => {
 
   const [newNumber, setNewNumber] = useState('')
 
-  const hook = () => {
-    axios.get('http://localhost:3001/persons').then(response => {
-        setPersons(response.data)
-      })
-  }
-  useEffect(hook, [])
+  useEffect(() => {
+    contactService
+    .getAll()
+    .then(initialPersons => {
+      setPersons(initialPersons)})}, [])
   
   const addContact = (event) => {
     event.preventDefault()
@@ -35,12 +34,20 @@ const App = () => {
     }
     setPersons(persons.concat(nameObject))
     
-    axios.post('http://localhost:3001/persons', nameObject)
-    .then(response => {
-    console.log(response.data) })
+    contactService
+    .create(personObject)
+    .then(returnedPerson => {
+      setPersons(persons.concat(returnedPerson))})
 
     setNewName('')
     setNewNumber('')
+  }
+
+  const removeContact = (id) => {
+    contactService.remove(id).then(() => {
+    setPersons(persons.filter(person => person.id !== id))
+    })
+    
   }
 
   const handleSearch = (event) => {
@@ -62,7 +69,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <SearchField value={searchTerm} onChange={handleSearch}/>
       <AddContact newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} addContact={addContact}/>
-      <Contacts filteredPersons={filteredPersons}/>
+      <Contacts filteredPersons={filteredPersons} removeContact={removeContact}/>
     </div>
   )
 }
