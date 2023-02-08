@@ -43,11 +43,12 @@ const App = () => {
     setNewNumber('')
   }
 
-  const removeContact = (id) => {
+  const removeContact = (id, name) => {
+    if (window.confirm(`Delete ${name}`)) {
     contactService.remove(id).then(() => {
     setPersons(persons.filter(person => person.id !== id))
     })
-    
+  }
   }
 
   const handleSearch = (event) => {
