@@ -5,3 +5,11 @@
   border: solid;
   padding: 10px;
 }
+
+.error {
+  color: red;
+  background-color: gray;
+  font-size: 20px;
+  border: solid;
+  padding: 10px;
+}

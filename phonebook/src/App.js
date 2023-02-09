@@ -9,15 +9,10 @@ import Error from './Components/Message'
 
 const App = () => {
   const [persons, setPersons] = useState([])
-
   const [searchTerm, setSearchTerm] = useState('')
-
   const [newName, setNewName] = useState('')
-
   const [newNumber, setNewNumber] = useState('')
-
   const [notification, setNotification] = useState(null)
-
   const [message, setErrorMessage] = useState(null)
 
   useEffect(() => {
@@ -43,6 +38,7 @@ const App = () => {
           setErrorMessage(
             `Information of '${changedPerson.name}' has already been removed from the server`
           )
+          return
         })
         setNotification(
           `Changed ${changedPerson.name}'s number to ${changedPerson.number}`
