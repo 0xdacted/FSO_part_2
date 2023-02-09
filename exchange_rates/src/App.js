@@ -1,23 +1,29 @@
 import { useState, useEffect } from 'react'
 import countriesService from './services/countries'
+import SearchField from './components/SearchField'
+import SearchResults from './components/SearchResults'
 
 const App = () => {
-  const [countries, setCountries] = useState(null)
+  const [countries, setCountries] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
-    if (countries) {
       countriesService
       .getAll()
-      .then(shownCountries => { 
-        setCountries(shownCountries)})
-      }}, [countries] )
+      .then(allCountries => { 
+        setCountries(allCountries)})
+      }, [] )
 
+  const handleSearch = (event) => {
+      setSearchTerm(event.target.value)
+      }
+  console.log(countries)
+  const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
   
-    
     return (
       <div>
-        find countries:<SearchField value={searchTerm} onChange={handleSearch}/>
+        <SearchField value={searchTerm} onChange={handleSearch}/>
+        <SearchResults filteredCountries={filteredCountries}/>
       </div>
       )
   }
