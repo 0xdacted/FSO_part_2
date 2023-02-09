@@ -26,13 +26,13 @@ const App = () => {
     if (nameAlreadyExists) {
       if (window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
         const person = persons.find(n => n.name === newName)
+        const id = person.id
         const changedPerson = {...person, number: newNumber}
         contactService
         .update(id, changedPerson)
         .then(returnedPerson => {
           setPersons(persons.map(person => person.name !== newName ? person : returnedPerson))
         })
-        console.log(changedPerson)
         return
       }   
     }
