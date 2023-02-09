@@ -3,6 +3,7 @@ import Contacts from './Components/Contacts'
 import contactService from './services/contacts'
 import AddContact from './Components/AddContact'
 import SearchField from './Components/SearchField'
+import Notification from './Components/Notification'
 
 
 const App = () => {
@@ -13,6 +14,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
 
   const [newNumber, setNewNumber] = useState('')
+
+  const [notification, setNotification] = useState(null)
 
   useEffect(() => {
     contactService
@@ -60,7 +63,6 @@ const App = () => {
   }
   }
 
-
   const handleSearch = (event) => {
     setSearchTerm(event.target.value)
   }
@@ -78,6 +80,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification/>
       <SearchField value={searchTerm} onChange={handleSearch}/>
       <AddContact newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} addContact={addContact}/>
       <Contacts filteredPersons={filteredPersons} removeContact={removeContact}/>
