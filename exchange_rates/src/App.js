@@ -19,7 +19,7 @@ const App = () => {
   const handleSearch = (event) => {
       setSearchTerm(event.target.value)
       }
-
+    
   const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
   
   const showData = (country) => {

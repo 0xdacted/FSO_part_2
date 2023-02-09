@@ -1,4 +1,23 @@
 import weatherService from '../services/weather'
+import { useState, useEffect } from 'react'
+
+const Weather = (props) => {
+  const [weather, setWeather] = useState(null)
+  useEffect(() => {
+    weatherService
+    .get(props.lat, props.lng)
+    .then(currWeather => {
+      setWeather(currWeather)
+    })
+  }, [])
+  console.log(weather)
+  return (
+    <div>
+
+    </div>
+  )
+}
+
 
 const Country = (props) => {
 return (
