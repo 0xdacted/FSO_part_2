@@ -36,6 +36,12 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.map(person => person.name !== newName ? person : returnedPerson))
         })
+        setNotification(
+          `Changed ${changedPerson.name}'s number to ${changedPerson.number}`
+          )
+        setTimeout(() => {
+          setNotification(null)
+          }, 3000)
         return
       }   
     }
@@ -50,7 +56,14 @@ const App = () => {
     .create(nameObject)
     .then(returnedPerson => {
       setPersons(persons.concat(returnedPerson))})
-
+  
+    setNotification(
+      `Added '${nameObject.name}'`
+      )
+    setTimeout(() => {
+      setNotification(null)
+      }, 3000)
+    
     setNewName('')
     setNewNumber('')
   }
@@ -61,6 +74,12 @@ const App = () => {
     setPersons(persons.filter(person => person.id !== id))
     })
   }
+  setNotification(
+    `Removed '${name}'`
+    )
+  setTimeout(() => {
+    setNotification(null)
+    }, 3000)
   }
 
   const handleSearch = (event) => {
@@ -80,7 +99,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification/>
+      <Notification notification={notification}/>
       <SearchField value={searchTerm} onChange={handleSearch}/>
       <AddContact newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} addContact={addContact}/>
       <Contacts filteredPersons={filteredPersons} removeContact={removeContact}/>
