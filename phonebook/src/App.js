@@ -4,6 +4,7 @@ import contactService from './services/contacts'
 import AddContact from './Components/AddContact'
 import SearchField from './Components/SearchField'
 import Notification from './Components/Notification'
+import Error from './Components/Message'
 
 
 const App = () => {
@@ -16,6 +17,8 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
 
   const [notification, setNotification] = useState(null)
+
+  const [message, setErrorMessage] = useState(null)
 
   useEffect(() => {
     contactService
@@ -35,6 +38,11 @@ const App = () => {
         .update(id, changedPerson)
         .then(returnedPerson => {
           setPersons(persons.map(person => person.name !== newName ? person : returnedPerson))
+        })
+        .catch(error => {
+          setErrorMessage(
+            `Information of '${changedPerson.name}' has already been removed from the server`
+          )
         })
         setNotification(
           `Changed ${changedPerson.name}'s number to ${changedPerson.number}`
@@ -99,6 +107,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Error message={message}/>
       <Notification notification={notification}/>
       <SearchField value={searchTerm} onChange={handleSearch}/>
       <AddContact newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} addContact={addContact}/>

@@ -1,4 +1,7 @@
 .notif {
-  color: red;
+  color: green;
+  background-color: gray;
   font-size: 20px;
+  border: solid;
+  padding: 10px;
 }
