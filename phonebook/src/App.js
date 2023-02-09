@@ -24,8 +24,17 @@ const App = () => {
     event.preventDefault()
     const nameAlreadyExists = persons.some(person => person.name === newName)
     if (nameAlreadyExists) {
-      alert(`${newName} is already added to the phonebook`)
-      return
+      if (window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
+        const person = persons.find(n => n.name === newName)
+        const changedPerson = {...person, number: newNumber}
+        contactService
+        .update(id, changedPerson)
+        .then(returnedPerson => {
+          setPersons(persons.map(person => person.name !== newName ? person : returnedPerson))
+        })
+        console.log(changedPerson)
+        return
+      }   
     }
     const nameObject = {
       id: persons.length + 1,
@@ -50,6 +59,7 @@ const App = () => {
     })
   }
   }
+
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value)
