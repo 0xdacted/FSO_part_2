@@ -23,11 +23,16 @@ const Area = (props) => {
 }
 
 const Languages = ({languages}) => {
+  return (
+  <div>
+  <h3>Languages</h3>
   <ul>
     {Object.values(languages).map(language => (
       <li key={language}>{language}</li>
     ))}
-  </ul>
+    </ul>
+    </div>
+  )
 }
 
 
@@ -45,7 +50,7 @@ const SearchResults = ({filteredCountries}) => {
         <Area area= {country.area}/>
         <Languages languages={country.languages}/>
       </div>
-      <img src={country.flag}/>
+      <h1>{country.flag}</h1>
     </div>
     )
   }

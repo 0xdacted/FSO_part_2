@@ -18,7 +18,6 @@ const App = () => {
       setSearchTerm(event.target.value)
       }
 
-    console.log(countries)
     const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
     
     return (
