@@ -17,9 +17,10 @@ const App = () => {
   const handleSearch = (event) => {
       setSearchTerm(event.target.value)
       }
-  console.log(countries)
-  const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
-  
+
+    console.log(countries)
+    const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()))
+    
     return (
       <div>
         <SearchField value={searchTerm} onChange={handleSearch}/>
