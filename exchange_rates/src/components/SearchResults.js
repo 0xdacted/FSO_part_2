@@ -36,7 +36,23 @@ const Languages = ({languages}) => {
 }
 
 
-const SearchResults = ({filteredCountries}) => {
+const SearchResults = ({filteredCountries, showData, selectedCountry}) => {
+  
+  if (selectedCountry) {
+    const country = selectedCountry
+    return (
+      <div>
+      <h2><Country name={country.name.common}/></h2> 
+      <div>
+        <Capital capital = {country.capital}/>
+        <Area area= {country.area}/>
+        <Languages languages={country.languages}/>
+      </div>
+      <h1>{country.flag}</h1>
+    </div>
+    )
+  }
+  
   if (filteredCountries.length > 10) {
     return <div>Too many matches, please specify another filter</div>
   }
@@ -54,12 +70,15 @@ const SearchResults = ({filteredCountries}) => {
     </div>
     )
   }
-  
+
   return (
     <div> 
-      {filteredCountries.map(country => 
-          <Country key={country.flag} name={country.name.common} />
-        )}
+      {filteredCountries.map(country => (
+        <div key={country.flag}>
+          <Country name={country.name.common} />
+          <button onClick={() => showData(country)}>show</button>
+        </div>
+        ))}
     </div>
   )
 }
