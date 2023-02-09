@@ -1,7 +1,8 @@
 import axios from 'axios'
-const baseURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${API_key}`
+const api_key = process.env.REACT_APP_API_KEY 
 
-const get = () => {
+const get = (lat, lon, part) => {
+  const baseURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${api_key}`
   const request = axios.get(baseURL)
   return request.then(response => response.data)
 }

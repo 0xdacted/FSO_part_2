@@ -3,6 +3,7 @@ import countriesService from './services/countries'
 import SearchField from './components/SearchField'
 import SearchResults from './components/SearchResults'
 
+
 const App = () => {
   const [countries, setCountries] = useState([])
   const [searchTerm, setSearchTerm] = useState('')

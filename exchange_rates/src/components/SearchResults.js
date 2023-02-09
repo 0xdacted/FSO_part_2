@@ -1,3 +1,5 @@
+import weatherService from '../services/weather'
+
 const Country = (props) => {
 return (
   <div>
@@ -49,6 +51,7 @@ const SearchResults = ({filteredCountries, showData, selectedCountry}) => {
         <Languages languages={country.languages}/>
       </div>
       <h1>{country.flag}</h1>
+
       <button onClick={() => showData(null)}>return</button>
     </div>
     )
