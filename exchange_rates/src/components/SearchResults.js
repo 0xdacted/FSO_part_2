@@ -12,7 +12,7 @@ const Weather = (props) => {
   }, [])
   return (
     <div>
-      <h1>Weather in <Country name={country.name.common}/></h1>
+      <h1>Weather in <Country name={props.country.name.common}/></h1>
       <p>temperature: {weather.temperature}</p>
       <p>wind: {weather.wind}</p>
     </div>
@@ -90,6 +90,7 @@ const SearchResults = ({filteredCountries, showData, selectedCountry}) => {
         <Capital capital = {country.capital}/>
         <Area area= {country.area}/>
         <Languages languages={country.languages}/>
+        <Weather lat={country.latlng[0]} lng={country.latlng[1]} country={country}/>
       </div>
       <h1>{country.flag}</h1>
     </div>
