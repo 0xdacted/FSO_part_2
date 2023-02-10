@@ -10,10 +10,11 @@ const Weather = (props) => {
       setWeather(currWeather)
     })
   }, [])
-  console.log(weather)
   return (
     <div>
-
+      <h1>Weather in <Country name={country.name.common}/></h1>
+      <p>temperature: {weather.temperature}</p>
+      <p>wind: {weather.wind}</p>
     </div>
   )
 }
@@ -70,7 +71,7 @@ const SearchResults = ({filteredCountries, showData, selectedCountry}) => {
         <Languages languages={country.languages}/>
       </div>
       <h1>{country.flag}</h1>
-
+      <Weather lat={country.latlng[0]} lng={country.latlng[1]} country={country}/>
       <button onClick={() => showData(null)}>return</button>
     </div>
     )
