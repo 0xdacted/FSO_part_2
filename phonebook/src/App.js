@@ -38,6 +38,9 @@ const App = () => {
           setErrorMessage(
             `Information of '${changedPerson.name}' has already been removed from the server`
           )
+          setTimeout(() => {
+            setNotification(null)
+            }, 3000)
           return
         })
         setNotification(
