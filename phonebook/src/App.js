@@ -60,6 +60,12 @@ const App = () => {
     .create(nameObject)
     .then(returnedPerson => {
       setPersons(persons.concat(returnedPerson))})
+    .catch(error => {
+      setErrorMessage(
+        `${error.response.data.error}`
+      )
+      return
+    })
   
     setNotification(
       `Added '${nameObject.name}'`
