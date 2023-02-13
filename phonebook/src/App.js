@@ -54,8 +54,7 @@ const App = () => {
       name: newName,
       number: newNumber
     }
-    setPersons(persons.concat(nameObject))
-    
+        
     contactService
     .create(nameObject)
     .then(returnedPerson => {
@@ -66,7 +65,6 @@ const App = () => {
       )
       return
     })
-  
     setNotification(
       `Added '${nameObject.name}'`
       )
